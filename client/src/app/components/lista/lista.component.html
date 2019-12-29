@@ -1,0 +1,98 @@
+<!-- -------------------NAVBAR------------------- -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<a class="navbar-brand" routerLink="/main">Inicio</a>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/persona">Persona<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/eventos">Eventos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/asistencia">Asistencia</a>
+			</li>
+		</ul>
+
+		<form class="form-inline my-2 my-lg-0">
+			<input class=" form-control mr-sm-2" type="search" placeholder="Buscar..."
+			aria-label="Buscar" name="personFilter" (keyup)="view($event.target.value)">
+			<!-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button> -->
+		</form>
+
+	</div>
+</nav>
+<!-- -------------------NAVBAR------------------- -->
+
+
+<div class="row margin">
+	<div class="col-6">
+		<form>
+			<div class="form-group">
+				<input type="text" [class]="inputNameClass" placeholder="Nombre"
+				name="nombre" [(ngModel)]="values.nombre" required autofocus> 
+				<small class="form-text text-danger" *ngIf="smallNote">El nombre es un dato requerído.</small>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control contacto" placeholder="Contacto"
+				 [(ngModel)]="values.contacto" name="contacto">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control direccion" placeholder="Direccíon"
+				 [(ngModel)]="values.direccion" name="direccion" required>
+			</div>
+			<button type="submit" class="btn btn-primary" (click)="send(values)" *ngIf="status==='add'">agregar</button>
+			<button type="submit" class="btn btn-primary" (click)="updateButton(values)" *ngIf="status==='update'">actualizar</button>
+		</form>
+		<br><br>
+		<!-- <div class="alert alert-danger" [hidden]="!alert">
+			Nombre requerido!
+		</div> -->
+	</div>
+	<div class="col-6">
+		<div class="list-group" style="cursor: pointer">			
+			<a class="list-group-item list-group-item-action"
+			*ngFor="let persona of personas let i = index">
+				<div style="width: 450px; height: 34px; position: absolute;" (click)="updateValue(persona)"></div>
+				{{persona.nombre}}
+			<span> <i class="fas fa-trash-alt float-right text-danger" (click)="delete(persona.id)"></i> </span>
+			</a>
+		</div>
+
+		<footer>
+			<div class="float-left" style="color: #55595c; font-size: 15px;">
+				<b>{{lengthP.index}}/{{count}}</b>
+			</div>
+			
+			<nav aria-label="Page pagination" class="float-right">
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" (click)="previous()" aria-label="Previous">
+							<span aria-hidden="true"><i class="fa fa-arrow-left text-secondary"></i></span>
+						</a>
+					</li>
+					
+					<li class="page-item">
+	
+					<a class="page-link" (click)="next()" aria-label="Next" *ngIf="nextB===true;">
+						<span aria-hidden="true"><i class="fa fa-arrow-right text-secondary"></i></span>
+					</a>
+	
+					<a class="page-link" aria-label="Next" *ngIf="nextB===false;">
+						<span aria-hidden="true"><i class="fa fa-arrow-right text-danger"></i></span>
+					</a>
+	
+					</li>
+				</ul>
+			</nav>
+		</footer>
+		
+	</div>
+</div>

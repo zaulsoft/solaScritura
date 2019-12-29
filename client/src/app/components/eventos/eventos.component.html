@@ -1,0 +1,112 @@
+<!-- ------------------------------NAVBAR------------------------------ -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+	<a class="navbar-brand" routerLink="/main">Inicio</a>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/persona">Persona<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/eventos">Eventos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerLinkActive="active" routerLink="/asistencia">Asistencia</a>
+			</li>
+		</ul>
+
+		<form class="form-inline my-2 my-lg-0">
+			<input class=" form-control mr-sm-2" type="search" placeholder="Filtrar por Nombre..."
+			aria-label="Buscar" name="personFilter" (keyup)="viewName($event.target.value)"
+			*ngIf="searchStatus === 'fecha'">
+
+			<input class=" form-control mr-sm-2" type="date" [(ngModel)]="dataDate.desde"
+			aria-label="Buscar" name="hasta" (change)="viewDate()"
+			*ngIf="searchStatus === 'nombre'">
+
+			<input class=" form-control mr-sm-2" type="date" [(ngModel)]="dataDate.hasta"
+			aria-label="Buscar" name="desde" (change)="viewDate()"
+			*ngIf="searchStatus === 'nombre'">
+
+
+
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit"
+			*ngIf="searchStatus === 'nombre'" (click)="nameFilter()">Nombre</button>
+
+			<button class="btn btn-outline-warning my-2 my-sm-0" type="submit"
+			*ngIf="searchStatus === 'fecha'" (click)="dateFilter()">Fecha</button>
+		</form>
+
+	</div>
+</nav>
+
+<!-- ------------------------------NAVBAR------------------------------ -->
+
+<div class="row margin">
+	<div class="col-6">
+		<form>
+			<div class="form-group">
+				<label>Nombre del Evento</label>
+				<input type="text" class="form-control" name="nombre" [(ngModel)]="values.nombre">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group">
+				<label>Lugar</label>
+				<input type="text" class="form-control" name="lugar" [(ngModel)]="values.lugar">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group">
+				<label>Fecha</label>
+				<input type="date" class="form-control" name="fecha" [(ngModel)]="values.fecha">
+			</div>
+			<div class="form-group">
+				<label>Hora</label>
+				<input type="time" class="form-control" name="hora" [(ngModel)]="values.hora">
+			</div>
+			<!-- <div class="form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1">
+				<label class="form-check-label">Check me out</label>
+			</div> -->
+			<button type="submit" class="btn btn-primary" (click)="send()" *ngIf="status==='add'">agregar</button>
+			<button type="submit" class="btn btn-primary" (click)="update()" *ngIf="status==='update'">actualizar</button>
+			<button type="submit" class="btn btn-danger float-right" (click)="delete()" *ngIf="status==='update'">Eliminar</button>
+		</form>
+	</div>
+	<div class="col-6">
+		<div class="tableScroll">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col" class="left">Evento</th>
+						<th scope="col" class="center">Fecha</th>
+						<th scope="col" class="right">Hora</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let evento of eventos let i = index" style="cursor: pointer;" (click)="edit(evento)">
+						<th scope="row">{{i}}</th>
+						<td class="left">{{evento.nombre}}</td>
+						<td class="center">{{evento.fecha | date: "dd/MM/yyyy"}}</td>
+						<td class="right">{{evento.hora}}</td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<button class="btn btn-outline-danger btn-block"  routerLink="/asistencia">Asistencia del evento actual</button>
+	</div>
+	<!-- <div class="col-8">
+		<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
+		<div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+		<div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+		<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+		</div>
+	</div> -->
+</div>

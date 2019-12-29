@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<br>
+<h1 class="center" style="color: gray;">Nombre del Evento</h1>
+<br>
+<div class="scroll">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item pointer" *ngFor="let persona of personas; let i = index">
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="check1" checked>
+				<label class="pointer custom-control-label" for="1">{{ persona.nombre }}</label>
+			</div>
+		</li>		
+	</ul>
+</div>

@@ -1,0 +1,17 @@
+.margin{
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 8px;
+}
+
+.right{
+	text-align: right;
+}
+
+.left{
+	text-align: left;
+}
+
+.center{
+	text-align: center;
+}

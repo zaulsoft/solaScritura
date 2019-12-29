@@ -1,0 +1,8 @@
+.scroll{
+	overflow-y: scroll;
+	height:312px;
+}
+
+.pointer{
+	cursor: pointer;
+}

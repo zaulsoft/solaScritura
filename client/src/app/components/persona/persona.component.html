@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+
+<div class="row margin">	
+	<div class="col-6" [innerHTML]="htmlSrc">
+		<!-- <h1 style="text-align: center; color: gray;">Detalle</h1> -->		
+	</div>
+	<div class="col-6">
+		<div class="list-group" style="cursor: pointer"> 
+			<a class="list-group-item list-group-item-action"
+			*ngFor="let persona of personas; let i = index"
+			(click)="detail(persona)"
+			>
+			{{persona.nombre}}			
+		</a>
+		</div>
+
+		<footer>
+			<div class="float-left" style="color: #55595c; font-size: 15px;">
+				<b>{{lengthP.index}}/{{count}}</b>
+			</div>
+			
+			<nav aria-label="Page pagination" class="float-right">
+				<ul class="pagination">
+					<li class="page-item">
+						<a class="page-link" (click)="previous()" aria-label="Previous">
+							<span aria-hidden="true"><i class="fa fa-arrow-left text-secondary"></i></span>
+						</a>
+					</li>
+					
+					<li class="page-item">
+	
+					<a class="page-link" (click)="next()" aria-label="Next" *ngIf="nextB===true;">
+						<span aria-hidden="true"><i class="fa fa-arrow-right text-secondary"></i></span>
+					</a>
+	
+					<a class="page-link" aria-label="Next" *ngIf="nextB===false;">
+						<span aria-hidden="true"><i class="fa fa-arrow-right text-danger"></i></span>
+					</a>
+	
+					</li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
+
+	
+</div>
+<!-- activa disabled -->
