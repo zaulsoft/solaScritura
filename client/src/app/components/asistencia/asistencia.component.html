@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <br>
-<h1 class="center" style="color: gray;">Nombre del Evento</h1>
+<!-- <h1 class="center" style="color: gray;">Nombre del Evento</h1>
 <br>
 <div class="scroll">
 	<ul class="list-group list-group-flush">
@@ -11,4 +11,15 @@
 			</div>
 		</li>		
 	</ul>
-</div>
+</div> -->
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<label formArrayName="orders" *ngFor="let persona of personas; let i = index">
+
+		<input type="checkbox" [formControlName]="i" >
+		{{ordersData[i].name}}
+
+	</label>
+	
+	<button>submit</button>
+</form>
